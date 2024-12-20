@@ -141,6 +141,7 @@ function EditorPanel() {
           {!clerk.loaded && <EditorPanelSkeleton />}
         </div>
       </div>
+      {isShareDialogOpen && <ShareSnippetDialog onclose={()=>setIsShareDialogOpen(false)} />}
     </div>
   );
 }
