@@ -12,7 +12,7 @@ const getInitialState = () => {
       theme: "vs-dark",
     };
   }
-   
+    
   const savedLanguage = localStorage.getItem("editor-language") || "javascript";
   const savedTheme = localStorage.getItem("editor-theme") || "vs-dark";
   const savedFontSize = localStorage.getItem("editor-font-size") || 16;
@@ -104,8 +104,8 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
           set({ error: data.message, executionResult: { code, output: "", error: data.message } });
           return;
         }
+        // Compilation Errors
 
-        // handle compilation errors
         if (data.compile && data.compile.code !== 0) {
           const error = data.compile.stderr || data.compile.output;
           set({
