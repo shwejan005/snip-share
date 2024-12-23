@@ -1,27 +1,45 @@
-"use client"
-import { api } from '@/convex/_generated/api'
-import { useQuery } from 'convex/react'
-import React, { useState } from 'react'
-import Skeleton from './_components/Skeleton'
-import NavigationHeader from '@/components/NavigationHeader'
-import { AnimatePresence, motion } from 'framer-motion'
-import { BookOpen, Grid, Layers, Search, Tag, X } from 'lucide-react'
-import SnippetCard from './_components/SnippetCard'
+"use client";
 
-const Snippets = () => {
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api"; 
+import { useState } from "react";
+import Skeleton from "./_components/Skeleton";
+import NavigationHeader from "@/components/NavigationHeader";
+
+import { AnimatePresence, motion } from "framer-motion";
+import { BookOpen, Code, Grid, Layers, Search, Tag, X } from "lucide-react";
+import SnippetCard from "./_components/SnippetCard";
+
+function SnippetsPage() {
   const snippets = useQuery(api.snippets.getSnippets);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null);
   const [view, setView] = useState<"grid" | "list">("grid");
 
-  if(snippets === undefined){
+  // loading state
+  if (snippets === undefined) {
     return (
-      <div className='min-h-screen'>
+      <div className="min-h-screen">
         <NavigationHeader />
         <Skeleton />
       </div>
-    )
+    );
   }
+
+  const languages = [...new Set(snippets.map((s) => s.language))];
+  const popularLanguages = languages.slice(0, 5);
+
+  const filteredSnippets = snippets.filter((snippet) => {
+    const matchesSearch =
+      snippet.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      snippet.language.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      snippet.userName.toLowerCase().includes(searchQuery.toLowerCase());
+
+    const matchesLanguage = !selectedLanguage || snippet.language === selectedLanguage;
+
+    return matchesSearch && matchesLanguage;
+  });
+
   return (
     <div className="min-h-screen bg-[#0a0a0f]">
       <NavigationHeader />
@@ -201,4 +219,4 @@ const Snippets = () => {
     </div>
   );
 }
-export default Snippets
+export default SnippetsPage;
