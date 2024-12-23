@@ -5,6 +5,7 @@ import { useQuery } from 'convex/react';
 import { useParams } from 'next/navigation'
 import React from 'react'
 import Skeleton from './_components/Skeleton';
+import NavigationHeader from '@/components/NavigationHeader';
 
 function SnippetDetailPage() {
   const snippetId = useParams().id;
@@ -14,10 +15,11 @@ function SnippetDetailPage() {
 
   if(snippet === undefined) return <Skeleton />
   return (
-    <div>
-       
+    <div className='min-h-screen bg-[#0a0a0f]'>
+       <NavigationHeader />
+
     </div>
   )
 }
 
-export default page
+export default SnippetDetailPage
