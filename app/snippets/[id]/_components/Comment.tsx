@@ -1,5 +1,5 @@
 import { Trash2Icon, UserIcon } from "lucide-react";
-import { Id } from "../../../../../convex/_generated/dataModel";
+import { Id } from "@/convex/_generated/dataModel"; 
 import CommentContent from "./CommentContent";
 
 interface CommentProps {
@@ -8,9 +8,9 @@ interface CommentProps {
     _creationTime: number;
     userId: string;
     userName: string;
-    snippetId: Id<"snippets">;
+    snippetId: string; // Change this to string
     content: string;
-  };
+  };  
   onDelete: (commentId: Id<"snippetComments">) => void;
   isDeleting: boolean;
   currentUserId?: string;
