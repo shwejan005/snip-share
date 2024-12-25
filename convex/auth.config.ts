@@ -2,7 +2,7 @@
 export default {
   providers: [
     {
-      domain: "https://funny-wombat-47.clerk.accounts.dev/",
+      domain: "https://jovial-gnat-691.convex.cloud/",
       applicationID: "convex",
     },
   ]

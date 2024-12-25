@@ -3,16 +3,16 @@ import { useUser } from "@clerk/nextjs";
 import { usePaginatedQuery, useQuery } from "convex/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { api } from "../../../convex/_generated/api";
+import { api } from "@/convex/_generated/api"; 
 import NavigationHeader from "@/components/NavigationHeader";
 import ProfileHeader from "./_components/ProfileHeader";
-import ProfileHeaderSkeleton from "./_components/ProfileHeaderSkeleton";
+import ProfileHeaderSkeleton from "./_components/ProfileHeader.Skeleton"; 
 import { ChevronRight, Clock, Code, ListVideo, Loader2, Star } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import StarButton from "@/components/StarButton";
-import CodeBlock from "./_components/CodeBlock";
+import CodeBlock from "./_components/CodeBlock"; 
 
 const TABS = [
   {
@@ -162,7 +162,7 @@ function ProfilePage() {
                       </div>
 
                       <div className="p-4 bg-black/20 rounded-b-xl border border-t-0 border-gray-800/50">
-                        <CodeBlock code={execution.code} language={execution.language} />
+                        {/* <CodeBlock code={execution.code} language={execution.language} /> */}
 
                         {(execution.output || execution.error) && (
                           <div className="mt-4 p-4 rounded-lg bg-black/40">
